@@ -24,6 +24,11 @@ func NewCluster(config Config) *Cluster {
 	}
 }
 
+// Wraps es.Cluster.Shutdown
+func (c *Cluster) Shutdown() {
+	c.cluster.Shutdown()
+}
+
 func (c *Cluster) labels(requestType string, ok bool) map[string]string {
 	labels := map[string]string{
 		"cluster":      c.Name,
