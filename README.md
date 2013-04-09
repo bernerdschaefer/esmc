@@ -47,21 +47,20 @@ The default behavior for `Search` and `MultiSearch` is the following:
 
 The following metrics are exposed through the prometheus client's registry:
 
-* `elasticsearch_client_requests`: A counter of the total number of requests to
-  an ES cluster
-* `elasticsearch_client_request_total_duration_nanoseconds`: The total amount
-  of time spent executing requests (nanoseconds)
-* `elasticsearch_client_request_durations_nanoseconds`: The amounts of time
-  spent executing requests (nanoseconds)
-* `elasticsearch_client_reported_request_total_duration_nanoseconds`: The total
-  amount of time spent executing requests as reported by elasticsearch
-(nanoseconds)
-* `elasticsearch_client_reported_request_durations_nanoseconds`: The amounts of
-  time spent executing requests as reported by elasticsearch (nanoseconds)
+* `esmc_requests`: A counter of the total number of requests to an ES cluster
+* `esmc_request_total_duration_nanoseconds`: The total amount of time spent
+  executing requests (nanoseconds)
+* `esmc_request_durations_nanoseconds`: The amounts of time spent executing
+  requests (nanoseconds)
+* `esmc_reported_request_total_duration_nanoseconds`: The total amount of time
+  spent executing requests as reported by elasticsearch (nanoseconds)
+* `esmc_reported_request_durations_nanoseconds`: The amounts of time spent
+  executing requests as reported by elasticsearch (nanoseconds)
 
 Each metric is labelled with:
 
 * `cluster`: the cluster name (from the cluster's config)
 * `cluster_mode`: the cluster's mode (on, off, dark)
-* `request_type`: search, multi_search, index, create, update, delete, bulk, execute
+* `request_type`: search, multi_search, index, create, update, delete, bulk,
+  execute
 * `outcome`: success, failure
