@@ -1,8 +1,8 @@
 package esmc_test
 
 import (
-	es "github.com/peterbourgon/elasticsearch"
 	"encoding/json"
+	es "github.com/peterbourgon/elasticsearch"
 	"reflect"
 	"testing"
 )
