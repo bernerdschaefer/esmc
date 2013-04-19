@@ -131,7 +131,10 @@ func (c *Cluster) Search(r es.SearchRequest) (response es.SearchResponse, err er
 		}
 
 		updateRequestMetrics(labels, time.Since(began))
-		updateReportedMetrics(labels, response.Took)
+
+		if err == nil {
+			updateReportedMetrics(labels, response.Took)
+		}
 	}(time.Now())
 
 	return c.cluster.Search(r)
