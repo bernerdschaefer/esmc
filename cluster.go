@@ -126,6 +126,10 @@ func (c *Cluster) Search(r es.SearchRequest) (response es.SearchResponse, err er
 	defer func(began time.Time) {
 		labels := c.labels("search", err == nil)
 
+		if err == nil && response.TimedOut {
+			labels["outcome"] = "timeout"
+		}
+
 		updateRequestMetrics(labels, time.Since(began))
 		updateReportedMetrics(labels, response.Took)
 	}(time.Now())
