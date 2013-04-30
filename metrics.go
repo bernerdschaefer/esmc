@@ -1,18 +1,17 @@
 package esmc
 
 import (
-	"github.com/prometheus/client_golang"
-	"github.com/prometheus/client_golang/metrics"
+	"github.com/prometheus/client_golang/prometheus"
 	"time"
 )
 
 var (
-	requestCount     = metrics.NewCounter()
-	requestDuration  = metrics.NewCounter()
-	requestDurations = metrics.NewDefaultHistogram()
+	requestCount     = prometheus.NewCounter()
+	requestDuration  = prometheus.NewCounter()
+	requestDurations = prometheus.NewDefaultHistogram()
 
-	reportedRequestDuration  = metrics.NewCounter()
-	reportedRequestDurations = metrics.NewDefaultHistogram()
+	reportedRequestDuration  = prometheus.NewCounter()
+	reportedRequestDurations = prometheus.NewDefaultHistogram()
 )
 
 func updateRequestMetrics(labels map[string]string, duration time.Duration) {
@@ -29,34 +28,34 @@ func updateReportedMetrics(labels map[string]string, took int) {
 }
 
 func init() {
-	registry.Register(
+	prometheus.Register(
 		"esmc_requests",
 		"A counter of the total number of requests to an ES cluster",
-		registry.NilLabels,
+		prometheus.NilLabels,
 		requestCount,
 	)
-	registry.Register(
+	prometheus.Register(
 		"esmc_request_total_duration_nanoseconds",
 		"The total amount of time spent executing requests (nanoseconds)",
-		registry.NilLabels,
+		prometheus.NilLabels,
 		requestDuration,
 	)
-	registry.Register(
+	prometheus.Register(
 		"esmc_request_durations_nanoseconds",
 		"The amounts of time spent executing requests (nanoseconds)",
-		registry.NilLabels,
+		prometheus.NilLabels,
 		requestDurations,
 	)
-	registry.Register(
+	prometheus.Register(
 		"esmc_reported_request_total_duration_nanoseconds",
 		"The total amount of time spent executing requests as reported by elasticsearch (nanoseconds)",
-		registry.NilLabels,
+		prometheus.NilLabels,
 		reportedRequestDuration,
 	)
-	registry.Register(
+	prometheus.Register(
 		"esmc_reported_request_durations_nanoseconds",
 		"The amounts of time spent executing requests as reported by elasticsearch (nanoseconds)",
-		registry.NilLabels,
+		prometheus.NilLabels,
 		reportedRequestDurations,
 	)
 }
